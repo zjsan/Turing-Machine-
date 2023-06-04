@@ -35,7 +35,7 @@ bool check_string(char str[])
 
 int main()
 {
-    char my_string[max] = " ";
+    char my_string[max];
     printf("Enter the string: ");
     fgets(my_string, sizeof(my_string), stdin); //read the string
     printf("the string is : ");
