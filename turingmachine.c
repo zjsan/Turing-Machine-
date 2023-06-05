@@ -2,6 +2,7 @@
 //Turing Machine Problem - a^n b^n*2
 //Final Assignment CMPSC 135 - Automata Theory and Languages
 //Zainal Jumaine D. Santos - BSCS 3A
+//Program doesn't work
 
 //attaching preprocessors in the program
 #include <stdio.h>
@@ -52,76 +53,51 @@ bool check_string(char str[])
 }
 
 //function to replace the characters in the string with x and y using the Logic of Turing Machine
+//Error in the replacement part
 void turing_machine(char string[])
 {
     char tape[max];
     strcpy(tape,string);
     int tape_length = strlen(tape);
     int pointer_position = 0;
+    int i = 0;
+    int last_pointer = 0;
 
     //iterate through every characters in the tape 
-    for (int i = 0; i <= tape_length; i++)
+    while(i <= tape_length)
     {
-        //replace the characters
-        if (string[pointer_position] == 'a')
+
+        //replacing individual characters in the tape
+        //error in the implementation of the replacement of characters
+        if(string[pointer_position] == 'a') //condition for a 
         {
             string[pointer_position] = 'x';
-            printf("Replace 'a' with 'x': %s at index : %d \n",string,pointer_position);
-            pointer_position++; 
+            printf("Pointer Position: %d -> string: [%s]",pointer_position, string);
 
-            if (string[pointer_position] == 'a')
-            {
-                printf("Replacing 'a' with 'a': %s\n",string);
-                pointer_position++;
-            }
-            else if (string[pointer_position] == 'x')
-            {
-                printf("Replacing 'x' with 'x': %s\n",string);
-
-                while (string[pointer_position] != '\0')
-                {
-                    pointer_position++;
-                }    
-            }    
         }
-        if (string[pointer_position] == '\0')
-        {
-            pointer_position--;
-            if (string[pointer_position] == 'b')
+        else if(string[pointer_position] == 'b')//condition for b
             {
                 string[pointer_position] = 'y';
-                printf("Replace 'b' with 'y': %s\n",string);
-                pointer_position--;
-                
-            }
-            else if (string[pointer_position] == 'y')
-            {
-                printf("Replacing 'y' with 'y': %s\n",string);
-
-                while (string[pointer_position] != 'x')
-                {
-                    pointer_position--;
-                }    
-            }    
+                printf("Pointer Position: %d -> string: [%s]",pointer_position, string);
             
-        }  
+             }
+        pointer_position++;//move the pointer to the right of the tape 
+        i++; //increase loop counter for the next iteration
     }
+    
     printf("Modified string: %s",string);
+    check_string(string);
 }
 
 int main()
 {
-    char my_string[max];
-    int x;
+    char my_string[max]; //array that contains the input string
     printf("Enter the string: ");
     fgets(my_string, sizeof(my_string), stdin); //read the string
     printf("the initial string is : ");
     puts(my_string);
 
-    if(check_string(my_string) == true)
-    {
-       turing_machine(my_string);
-    }
+   turing_machine(my_string);
     
 
 
